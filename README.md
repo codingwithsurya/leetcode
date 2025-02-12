@@ -1,1 +1,1 @@
-more: https://leetcode.com/u/codingwithsurya/
+https://leetcode.com/u/codingwithsurya/
