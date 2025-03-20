@@ -5,9 +5,12 @@ class Bank:
         self.n = len(balance)
         for account, bal in enumerate(balance):
             self.account_to_balance[account + 1] = bal 
+        
+    def is_valid(self, account):
+        return 1 <= account <= self.n
 
     def transfer(self, account1: int, account2: int, money: int) -> bool:
-        if not 1 <= account1 <= self.n or not 1 <= account2 <= self.n or self.account_to_balance[account1] < money:
+        if not self.is_valid(account1) or not self.is_valid(account2) or self.account_to_balance[account1] < money:
             return False 
         
         self.account_to_balance[account1] -= money 
@@ -15,14 +18,14 @@ class Bank:
         return True 
         
     def deposit(self, account: int, money: int) -> bool:
-        if not 1 <= account <= self.n:
+        if not self.is_valid(account):
             return False 
         
         self.account_to_balance[account] += money 
         return True 
         
     def withdraw(self, account: int, money: int) -> bool:
-        if not 1 <= account <= self.n or self.account_to_balance[account] < money:
+        if not self.is_valid(account) or self.account_to_balance[account] < money:
             return False 
         
         self.account_to_balance[account] -= money 
